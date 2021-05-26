@@ -5,9 +5,16 @@ const Note = require('./modals/note');
 const { render } = require('ejs');
 const app = express();
 
+let port = process.env.PORT;
+if (port == null || port =="") {
+    port = 3000;
+}
+
+
+
 const dbURI = "mongodb+srv://gotohell123:gotohell123@cluster0.osdqx.mongodb.net/notemaker?retryWrites=true&w=majority";
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-   .then((result) => app.listen(3000))
+   .then((result) => app.listen(port))
    .catch((err) => console.log(err));
 
 app.set('view engine', 'ejs');
